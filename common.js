@@ -50,3 +50,15 @@ function callbackUrl(url, func, json, suc, fail) {
         error: fail
     });
 }
+
+// "implement" max length on text area
+function maxLengthTextArea()
+{
+    $("textarea[maxlength]").live("keyup blur", function () {
+        var maxlength = $(this).attr("maxlength");
+        var val = $(this).val();
+
+        if (val.length > maxlength)
+            $(this).val(val.slice(0, maxlength));
+    });
+}
