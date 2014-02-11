@@ -48,6 +48,13 @@ function getParameterByName(name) {
         return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function parseDateTime(key, value) {
+    if (typeof value === 'string' && value.indexOf('/Date') != -1)
+        return new Date(parseInt(value.substr(6)));
+
+    return value;
+}
+
 function callback(func, json, suc, fail) {
     $.ajax({
         type: "POST",
@@ -55,6 +62,7 @@ function callback(func, json, suc, fail) {
         contentType: "application/json; charset=utf-8",
         data: json,
         dataType: "json",
+        converters: { "text json": function(t) { return JSON.parse(t, parseDateTime); } },
         success: suc,
         error: fail
     });
@@ -67,6 +75,7 @@ function callbackUrl(url, func, json, suc, fail) {
         contentType: "application/json; charset=utf-8",
         data: json,
         dataType: "json",
+        converters: { "text json": function(t) { return JSON.parse(t, parseDateTime); } },
         success: suc,
         error: fail
     });
