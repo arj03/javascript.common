@@ -23,6 +23,13 @@ if (typeof String.prototype.endsWith !== 'function') {
     };
 }
 
+// string padding
+function paddy(str, totalLength, paddingChar) {
+    var pad_char = typeof paddingChar !== 'undefined' ? paddingChar : '0';
+    var pad = new Array(1 + totalLength).join(pad_char);
+    return (pad + str).slice(-pad.length);
+}
+
 // IE < 9 doesn't have indexOf
 if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (elt /*, from*/) {
