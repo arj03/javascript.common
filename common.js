@@ -37,6 +37,21 @@ if (!Array.prototype.indexOf) {
     };
 }
 
+// add remove to array
+Object.defineProperty(Array.prototype, "remove", {
+    enumerable: false,
+    value: function (item) {
+        for (var index = 0; index < this.length; ++index) {
+            if (this[index] === item) {
+                this.splice(index, 1);
+                index--;
+            }
+        }
+
+        return this;
+    }
+});
+
 // this will also escape the name
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
