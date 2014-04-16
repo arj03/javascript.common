@@ -16,6 +16,13 @@ if (typeof String.prototype.trim !== 'function') {
   String.prototype.trim = jQuery.trim;
 }
 
+// add endswidth to string
+if (typeof String.prototype.endsWith !== 'function') {
+    String.prototype.endsWith = function(suffix) {
+        return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
+}
+
 // IE < 9 doesn't have indexOf
 if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function (elt /*, from*/) {
