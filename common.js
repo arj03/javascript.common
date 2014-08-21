@@ -85,7 +85,7 @@ function parseDateTime(key, value) {
 }
 
 function callback(func, json, suc, fail) {
-    $.ajax({
+    return $.ajax({
         type: "POST",
         url: window.location.pathname + "/" + func,
         contentType: "application/json; charset=utf-8",
@@ -98,7 +98,7 @@ function callback(func, json, suc, fail) {
 }
 
 function callbackUrl(url, func, json, suc, fail) {
-    $.ajax({
+    return $.ajax({
         type: "POST",
         url: url + "/" + func,
         contentType: "application/json; charset=utf-8",
